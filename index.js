@@ -73,6 +73,21 @@ class Person {
 */
 
 class Car {
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  } fill(gallons){
+    if (this.tank < 1000){
+      this.tank = this.tank + gallons;
+    }
+  }
+   drive(distance){
+     if (this.tank > 0){
+       this.odometer = this.odometer + distance
+     }
+   }
 
 }
 
