@@ -87,26 +87,12 @@ class Car {
     if(distance >= (this.tank * this.milesPerGallon)){
       this.odometer = this.odometer + (this.tank * this.milesPerGallon);
       this.tank = 0;
-      console.log(`I ran out of fuel at ${this.odometer} miles!`);
       return `I ran out of fuel at ${this.odometer} miles!`;
     }
     else if(distance < (this.tank * this.milesPerGallon)){
       this.odometer = this.odometer + distance;
       this.tank = ((this.tank * this.milesPerGallon) - distance) / this.milesPerGallon;
     }
-
-
-
-
-  //  this.odometer = distance;
-  //  let distanceDrove =(distance/this.milesPerGallon);
-  //    this.tank -= Math.round(distance/this.milesPerGallon);
-  //   if(distanceDrove > this.tank){
-  //     return `I ran out of fuel at ${this.odometer} miles!`
-  //   }
-    // }else if(this.tank === 0){
-    //   return `I ran out of fuel at ${this.odometer} miles!`;
-    // }
   }
 }
 //cheese
@@ -156,15 +142,16 @@ class Instructor extends Lambdasian{
   }
   demo(subject){
     this.subject = subject;
-    return  'Today we are learning about ${this.subject}'
-  };
+    return  `Today we are learning about ${this.subject}`
+  }
 
   grade(student, subject){
     this.student = student;
     this.subject = subject;
-    '{this.student.name} receives a perfect score on {this.subject}'
+   return  `${this.student.name} receives a perfect score on ${this.subject}`
   };
 }
+
 
 /*
   TASK 5
@@ -181,8 +168,24 @@ class Instructor extends Lambdasian{
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian{
+constructor(attrs){
+  super(attrs);
+  this.previousBackground = attrs.previousBackground;
+  this.className = attrs.className;
+  this.favSubjects = attrs.favSubjects;
+}
+listSubjects(){
+  return `Loving ${this.favSubjects}!`
+}
+PRAssignment(subject){
+this.subject = subject;
+return `${this.name} has submitted a PR for ${subject}`
+}
+sprintChallenge(subject){
+  this.subject = subject;
+  return `${this.name} has begun sprint challenge on ${subject}`
+}
 }
 
 /*
