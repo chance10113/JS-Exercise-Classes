@@ -83,12 +83,31 @@ class Car {
       this.tank = this.tank + gallons;
     }
   }
-   drive(distance){
-     if (this.tank > 0){
-       this.odometer = this.odometer + distance
-     }
-   }
+  drive(distance){
+    if(distance >= (this.tank * this.milesPerGallon)){
+      this.odometer = this.odometer + (this.tank * this.milesPerGallon);
+      this.tank = 0;
+      console.log(`I ran out of fuel at ${this.odometer} miles!`);
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+    else if(distance < (this.tank * this.milesPerGallon)){
+      this.odometer = this.odometer + distance;
+      this.tank = ((this.tank * this.milesPerGallon) - distance) / this.milesPerGallon;
+    }
 
+
+
+
+  //  this.odometer = distance;
+  //  let distanceDrove =(distance/this.milesPerGallon);
+  //    this.tank -= Math.round(distance/this.milesPerGallon);
+  //   if(distanceDrove > this.tank){
+  //     return `I ran out of fuel at ${this.odometer} miles!`
+  //   }
+    // }else if(this.tank === 0){
+    //   return `I ran out of fuel at ${this.odometer} miles!`;
+    // }
+  }
 }
 //cheese
 /*
@@ -104,7 +123,14 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+constructor(attrs){
+  this.name = attrs.name;
+  this.age = attrs.age;
+  this.location = attrs.location;
+}
+speak(){
+  return `Hello my name is ${this.name}, I am from ${this.location}`
+}
 }
 
 /*
@@ -121,8 +147,23 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian{
+  constructor(attrs){
+    super(attrs);
+    this.specialty = attrs.specialty;
+    this.favLanguage = attrs.favLanguage;
+    this.catchPhrase = attrs.catchPhrase;
+  }
+  demo(subject){
+    this.subject = subject;
+    return  'Today we are learning about ${this.subject}'
+  };
 
+  grade(student, subject){
+    this.student = student;
+    this.subject = subject;
+    '{this.student.name} receives a perfect score on {this.subject}'
+  };
 }
 
 /*
